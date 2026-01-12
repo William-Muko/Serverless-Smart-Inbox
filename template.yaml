@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Intelligent Email Sorting System
+
+Resources:
+  EmailProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: EmailSortingProcessor
+      Runtime: python3.11
+      Handler: lambda_function.lambda_handler
+      Timeout: 60
+      MemorySize: 256
+      Environment:
+        Variables:
+          BUCKET_NAME: !Sub 'smart-inbox-emails-${AWS::AccountId}'
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Sub 'smart-inbox-emails-${AWS::AccountId}'
+        - Statement:
+            - Effect: Allow
+              Action:
+                - comprehend:DetectSentiment
+                - comprehend:DetectKeyPhrases
+              Resource: '*'
+
+  EmailBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'smart-inbox-emails-${AWS::AccountId}'
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: s3:ObjectCreated:*
+            Function: !GetAtt EmailProcessorFunction.Arn
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: incoming/
+    DependsOn: S3InvokePermission
+
+  S3InvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref EmailProcessorFunction
+      Action: lambda:InvokeFunction
+      Principal: s3.amazonaws.com
+      SourceArn: !Sub 'arn:aws:s3:::smart-inbox-emails-${AWS::AccountId}'
+
+Outputs:
+  BucketName:
+    Value: !Ref EmailBucket
+  FunctionArn:
+    Value: !GetAtt EmailProcessorFunction.Arn

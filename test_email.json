@@ -1,0 +1,7 @@
+{
+  "from": "customer@example.com",
+  "to": "support@company.com",
+  "subject": "URGENT: System is down!",
+  "body": "Our production system has been down for 2 hours. This is critical and needs immediate attention. We're losing revenue every minute!",
+  "timestamp": "2024-01-15T10:30:00Z"
+}
