@@ -2,6 +2,13 @@
 
 Serverless email routing system using AWS Lambda, S3, and Amazon Comprehend for sentiment analysis and automatic categorization.
 
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![AWS Lambda](https://img.shields.io/badge/AWS_Lambda-FF9900?style=for-the-badge&logo=aws-lambda&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/Amazon_S3-569A31?style=for-the-badge&logo=amazon-s3&logoColor=white)
+![AWS SAM](https://img.shields.io/badge/AWS_SAM-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+
 ## Architecture
 
 - **AWS SAM**: Infrastructure as Code deployment framework
@@ -100,3 +107,7 @@ Check CloudWatch Logs:
 ```bash
 aws logs tail /aws/lambda/EmailSortingProcessor --follow
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
