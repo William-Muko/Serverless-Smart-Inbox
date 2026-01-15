@@ -19,11 +19,11 @@ Serverless email routing system using AWS Lambda, S3, and Amazon Comprehend for 
 
 ## Features
 
-✅ **Sentiment Detection**: Positive, Neutral, Negative
-✅ **Urgency Detection**: Keywords like "urgent", "critical", "asap"
-✅ **Auto-Routing**: Emails sorted into categories
-✅ **Response Templates**: Auto-generated based on sentiment
-✅ **Escalation**: Negative/urgent emails flagged
+- ✅ **Sentiment Detection**: Positive, Neutral, Negative
+- ✅ **Urgency Detection**: Keywords like "urgent", "critical", "asap"
+- ✅ **Auto-Routing**: Emails sorted into categories
+- ✅ **Response Templates**: Auto-generated based on sentiment
+- ✅ **Escalation**: Negative/urgent emails flagged
 
 ## Email Categories
 
